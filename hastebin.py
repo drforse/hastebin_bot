@@ -1,5 +1,5 @@
 from aiohttp import ClientSession, ClientResponse
-import io
+import typing
 
 
 class Hastebin:
@@ -15,13 +15,13 @@ class Hastebin:
         result = await r.json()
         return self.__base_url + result['key']
 
-    async def create_paste_from_file(self, file: io.TextIOWrapper):
+    async def create_paste_from_file(self, file: typing.TextIO):
         text = file.read()
         return await self.create_paste_from_text(text)
 
     @staticmethod
     def validate_response(r: ClientResponse):
-        if not r.status.as_integer_ratio() != 200:
+        if r.status != 200:
             raise BadRequest(r.status)
         return r
 
