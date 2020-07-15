@@ -7,7 +7,7 @@ from aiogram import types
 from aiogram_oop_framework.core.project import Project, ProjectStructure
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
-PATH = Path.cwd().parent
+PATH = Path.cwd()
 PROJECT_NAME = "bot"
 pr: Project = Project(PROJECT_NAME, PATH)
 struc: ProjectStructure = ProjectStructure(pr)
@@ -19,7 +19,7 @@ PROJECT: Project = pr
 AUTO_REGISTER_VIEWS = True
 
 
-TELEGRAM_BOT_TOKEN: str = os.environ["bot_token"]
+TELEGRAM_BOT_TOKEN: str = os.environ['bot_token']
 
 MIDDLEWARES: typing.List[BaseMiddleware.__class__] = []
 
