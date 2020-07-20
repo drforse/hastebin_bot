@@ -1,10 +1,14 @@
 import os
 from aiogram_oop_framework.views import CommandView
 
-from hastebin import Hastebin
+from pastebin.hastebin import Hastebin
+from pastebin.hatebin import Hatebin
 
 
-class Paste(CommandView):
+class Hate(CommandView):
+    commands = ['hate', 'haste']
+    append_commands = False
+
     @classmethod
     async def execute(cls, m, state=None, **kwargs):
         rpl_m = m.reply_to_message
@@ -12,14 +16,17 @@ class Paste(CommandView):
             await m.answer('Command should be a reply to text or file with code')
             return
 
-        hastebin = Hastebin(m.bot.session)
+        if m.text.startswith('/hate'):
+            pastebin = Hatebin(m.bot.session)
+        else:
+            pastebin = Hastebin(m.bot.session)
         if rpl_m.text:
-            url = await hastebin.create_paste_from_text(rpl_m.text)
+            url = await pastebin.create_paste_from_text(rpl_m.text)
         elif rpl_m.document:
             dest = await rpl_m.document.download()
             dest.close()
             with open(dest.name) as file:
-                url = await hastebin.create_paste_from_file(file)
+                url = await pastebin.create_paste_from_file(file)
             os.remove(dest.name)
         else:
             await m.answer('Unsupported type, supported types: document, text')
