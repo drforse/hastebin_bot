@@ -4,6 +4,7 @@ from aiogram_oop_framework.views import CommandView
 class Start(CommandView):
     commands = ['help', 'start']
     append_commands = False
+    index = 0
 
     @classmethod
     async def execute(cls, m, state=None, **kwargs):

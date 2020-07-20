@@ -8,6 +8,7 @@ from pastebin.hatebin import Hatebin
 class Hate(CommandView):
     commands = ['hate', 'haste']
     append_commands = False
+    index = 1
 
     @classmethod
     async def execute(cls, m, state=None, **kwargs):

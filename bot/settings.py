@@ -11,7 +11,7 @@ PATH = Path.cwd()
 PROJECT_NAME = "bot"
 pr: Project = Project(PROJECT_NAME, PATH)
 struc: ProjectStructure = ProjectStructure(pr)
-struc.include('views')
+struc.include('views.commands')
 pr.structure = struc
 
 PROJECT: Project = pr
