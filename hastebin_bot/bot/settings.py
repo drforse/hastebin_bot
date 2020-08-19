@@ -19,7 +19,7 @@ PROJECT: Project = pr
 AUTO_REGISTER_VIEWS = True
 
 
-TELEGRAM_BOT_TOKEN: str = os.environ['bot_token']
+TELEGRAM_BOT_TOKEN: str = os.environ['HASTEBIN_BOT_TOKEN']
 
 MIDDLEWARES: typing.List[BaseMiddleware.__class__] = []
 
