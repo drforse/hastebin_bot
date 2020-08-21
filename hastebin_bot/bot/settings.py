@@ -7,11 +7,11 @@ from aiogram import types
 from aiogram_oop_framework.core.project import Project, ProjectStructure
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
-PATH = Path.cwd()
-PROJECT_NAME = "bot"
+PATH = Path(__file__).parent.parent.parent
+PROJECT_NAME = "hastebin_bot"
 pr: Project = Project(PROJECT_NAME, PATH)
 struc: ProjectStructure = ProjectStructure(pr)
-struc.include('views.commands')
+struc.include('bot.views.commands')
 pr.structure = struc
 
 PROJECT: Project = pr
