@@ -1,7 +1,7 @@
 import os
 from aiogram_oop_framework.views import DocumentView
 
-from pastebin.hatebin import Hatebin
+from hastebin_bot.pastebin.hatebin import Hatebin
 
 
 class MyDocView(DocumentView):

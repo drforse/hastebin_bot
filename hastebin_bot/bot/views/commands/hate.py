@@ -1,8 +1,8 @@
 import os
 from aiogram_oop_framework.views import CommandView
 
-from pastebin.hastebin import Hastebin
-from pastebin.hatebin import Hatebin
+from hastebin_bot.pastebin.hastebin import Hastebin
+from hastebin_bot.pastebin.hatebin import Hatebin
 
 
 class Hate(CommandView):

@@ -1,10 +1,10 @@
 from aiogram import Dispatcher, Bot, executor
 
-from bot.manage import initialize_project
-from bot.settings import TELEGRAM_BOT_TOKEN
+from hastebin_bot.bot.manage import initialize_project
+from hastebin_bot.bot.settings import TELEGRAM_BOT_TOKEN
 
 
-if __name__ == '__main__':
+def main():
     bot = Bot(TELEGRAM_BOT_TOKEN)
     dp = Dispatcher(bot)
     initialize_project(dp, bot)

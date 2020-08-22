@@ -1,6 +1,6 @@
 from aiogram_oop_framework.views import TextView
 
-from pastebin.hatebin import Hatebin
+from hastebin_bot.pastebin.hatebin import Hatebin
 
 
 class MyTextView(TextView):
