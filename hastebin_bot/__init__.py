@@ -1,11 +1,7 @@
-from aiogram import Dispatcher, Bot, executor
+import asyncio
 
-from hastebin_bot.bot.manage import initialize_project
-from hastebin_bot.bot.settings import TELEGRAM_BOT_TOKEN
+from .bot import run_polling
 
 
 def main():
-    bot = Bot(TELEGRAM_BOT_TOKEN)
-    dp = Dispatcher(bot)
-    initialize_project(dp, bot)
-    executor.start_polling(dp)
+    asyncio.run(run_polling())

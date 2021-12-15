@@ -1,19 +1,19 @@
+import codecs
 import os
-from aiogram_oop_framework.views import DocumentView
+from aiogram import Router, Bot
+from aiogram.types import ContentType, Message
 
-from hastebin_bot.pastebin.hatebin import Hatebin
+from ...pastebin.hatebin import Hatebin
 
 
-class MyDocView(DocumentView):
-    index = 3
-    custom_filters = [lambda m: m.chat.type == 'private']
+router = Router()
 
-    @classmethod
-    async def execute(cls, m, state=None, **kwargs):
-        pastebin = Hatebin(m.bot.session)
-        dest = await m.document.download()
-        dest.close()
-        with open(dest.name) as file:
-            url = await pastebin.create_paste_from_file(file)
-        os.remove(dest.name)
-        await m.reply(url)
+
+@router.message(lambda m: m.chat.type == "private", content_types=ContentType.DOCUMENT)
+async def process_document(m: Message, bot: Bot):
+    dest = await bot.download(m.document)
+    reader = codecs.getreader("utf-8")
+    async with Hatebin() as hatebin:
+        url = await hatebin.create_paste_from_file(reader(dest))
+    dest.close()
+    await m.reply(url)

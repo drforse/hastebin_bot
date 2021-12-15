@@ -1,14 +1,14 @@
-from aiogram_oop_framework.views import TextView
+from aiogram import Router
+from aiogram.types import Message
 
-from hastebin_bot.pastebin.hatebin import Hatebin
+from ...pastebin.hatebin import Hatebin
 
 
-class MyTextView(TextView):
-    index = 2
-    custom_filters = [lambda m: m.chat.type == 'private']
+router = Router()
 
-    @classmethod
-    async def execute(cls, m, state=None, **kwargs):
-        pastebin = Hatebin(m.bot.session)
-        url = await pastebin.create_paste_from_text(m.text)
-        await m.reply(url)
+
+@router.message(lambda m: m.chat.type == "private")
+async def process_document(m: Message):
+    async with Hatebin() as hatebin:
+        url = await hatebin.create_paste_from_text(m.text)
+    await m.reply(url)
